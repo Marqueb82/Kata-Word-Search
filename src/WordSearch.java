@@ -44,7 +44,7 @@ public class WordSearch {
 		List<String> puzzleWords = new ArrayList<String>();
 
 		try {
-
+			// read txt file first line to find list of puzzle words for search
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			String[] lineOfWords = bufferedReader.readLine().split(",");
