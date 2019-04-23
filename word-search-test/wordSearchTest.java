@@ -43,11 +43,16 @@ public class wordSearchTest {
 	public void checkGridCoords() {
 		// check if testValue will match letter at 2D array index
 		WordSearch wordSearch = new WordSearch();
-		String testValue = "I";
-		String testValueTwo = "B";
+		char testValue = 'I';
+		char testValueTwo = 'B';
 
 		assertEquals(testValue, wordSearch.makePuzzleGrid("WordPuzzle.txt")[0][7]);
 		assertEquals(testValueTwo, wordSearch.makePuzzleGrid("WordPuzzle.txt")[14][14]);
+	}
+
+	@Test
+	public void findWordInGrid() {
+		assertTrue(false);
 	}
 
 }
