@@ -1,4 +1,8 @@
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class WordSearch {
 
@@ -31,6 +35,31 @@ public class WordSearch {
 		}
 
 		return false;
+
+	}
+
+	public static List<String> puzzleWords(File file) {
+
+		file = new File("WordPuzzle.txt");
+		List<String> puzzleWords = new ArrayList<String>();
+		String lineOfWords = "";
+
+		try {
+			Scanner sc = new Scanner(file);
+			lineOfWords = sc.nextLine();
+			sc.close();
+		} catch (IOException io) {
+			System.out.println("Error occurred");
+			io.printStackTrace();
+		}
+
+		String[] splitWords = lineOfWords.split(",");
+
+		for (String words : splitWords) {
+			puzzleWords.add(words);
+		}
+
+		return puzzleWords;
 
 	}
 
