@@ -7,7 +7,9 @@ import java.util.List;
 
 public class WordSearch {
 
-	public static boolean foundTxtFile() {
+	private List<String> puzzleWords;
+
+	public boolean foundTxtFile() {
 
 		File wordSearch = new File("WordPuzzle.txt");
 
@@ -23,7 +25,7 @@ public class WordSearch {
 
 	}
 
-	public static boolean readTxtFile() {
+	public boolean readTxtFile() {
 
 		File wordSearch = new File("WordPuzzle.txt");
 
@@ -39,9 +41,9 @@ public class WordSearch {
 
 	}
 
-	public static List<String> puzzleWords(String file) {
+	public List<String> getPuzzleWords(String file) {
 
-		List<String> puzzleWords = new ArrayList<String>();
+		puzzleWords = new ArrayList<String>();
 
 		try {
 			// read txt file first line to find list of puzzle words for search
@@ -60,6 +62,47 @@ public class WordSearch {
 		}
 
 		return puzzleWords;
+
+	}
+
+	public String[][] readPuzzleGrid(String file) {
+
+		String[][] puzzleGrid = null;
+
+		try {
+			FileReader fileReader = new FileReader(file);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			bufferedReader.readLine();
+
+			int arrayLength = 0;
+			int row = 0;
+			int col = 0;
+			String line;
+
+			while ((line = bufferedReader.readLine()) != null) {
+
+				String[] gridLetters = line.split(",");
+
+				if (puzzleGrid == null) {
+					arrayLength = gridLetters.length;
+					puzzleGrid = new String[arrayLength][arrayLength];
+				}
+
+				for (col = 0; col < arrayLength; col++) {
+					puzzleGrid[row][col] = gridLetters[col];
+				}
+
+				row++;
+			}
+
+			bufferedReader.close();
+
+		} catch (IOException e) {
+			System.out.println("Error occurred");
+			e.printStackTrace();
+		}
+
+		return puzzleGrid;
 
 	}
 
