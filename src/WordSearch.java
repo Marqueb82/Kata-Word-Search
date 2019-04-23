@@ -1,8 +1,9 @@
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class WordSearch {
 
@@ -38,25 +39,24 @@ public class WordSearch {
 
 	}
 
-	public static List<String> puzzleWords(File file) {
+	public static List<String> puzzleWords(String file) {
 
-		file = new File("WordPuzzle.txt");
 		List<String> puzzleWords = new ArrayList<String>();
-		String lineOfWords = "";
 
 		try {
-			Scanner sc = new Scanner(file);
-			lineOfWords = sc.nextLine();
-			sc.close();
+
+			FileReader fileReader = new FileReader(file);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			String[] lineOfWords = bufferedReader.readLine().split(",");
+			bufferedReader.close();
+
+			for (String words : lineOfWords) {
+				puzzleWords.add(words);
+			}
+
 		} catch (IOException io) {
 			System.out.println("Error occurred");
 			io.printStackTrace();
-		}
-
-		String[] splitWords = lineOfWords.split(",");
-
-		for (String words : splitWords) {
-			puzzleWords.add(words);
 		}
 
 		return puzzleWords;
