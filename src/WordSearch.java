@@ -65,13 +65,14 @@ public class WordSearch {
 
 	}
 
-	public String[][] readPuzzleGrid(String file) {
+	public String[][] makePuzzleGrid(String file) {
 
 		String[][] puzzleGrid = null;
 
 		try {
 			FileReader fileReader = new FileReader(file);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			// skip first line in txt file which contains list of puzzle words
 			bufferedReader.readLine();
 
 			int arrayLength = 0;
@@ -79,6 +80,7 @@ public class WordSearch {
 			int col = 0;
 			String line;
 
+			// search through txt file puzzle grid until complete
 			while ((line = bufferedReader.readLine()) != null) {
 
 				String[] gridLetters = line.split(",");
@@ -88,10 +90,12 @@ public class WordSearch {
 					puzzleGrid = new String[arrayLength][arrayLength];
 				}
 
+				// go through line adding letters to array
 				for (col = 0; col < arrayLength; col++) {
 					puzzleGrid[row][col] = gridLetters[col];
 				}
 
+				// next line
 				row++;
 			}
 

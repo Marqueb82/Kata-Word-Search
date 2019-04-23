@@ -41,7 +41,7 @@ public class wordSearchTest {
 
 	@Test
 	public void checkGridCoords() {
-		// check if testValue will match 2D array index
+		// check if testValue will match letter at 2D array index
 		WordSearch wordSearch = new WordSearch();
 		String testValue = "I";
 		String testValueTwo = "B";
