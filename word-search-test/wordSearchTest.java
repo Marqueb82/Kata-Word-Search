@@ -17,7 +17,7 @@ public class wordSearchTest {
 
 	@Test
 	public void canReadTxtFile() {
-		// check if we have actual txt file to use
+		// check if we can read txt file
 		WordSearch wordSearch = new WordSearch();
 		assertTrue(wordSearch.readTxtFile());
 	}
