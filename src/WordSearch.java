@@ -108,6 +108,7 @@ public class WordSearch {
 
 	public String findWordLeftToRight(String searchFor) {
 
+		// creating 2d array grid from txt file
 		char[][] puzzle = makePuzzleGrid("WordPuzzle.txt");
 		int k = 0;
 		String foundAt = "";
@@ -122,8 +123,9 @@ public class WordSearch {
 
 				if (k == searchFor.length()) {
 					foundAt = searchFor + ":" + "\t";
-					for (int yAxis = col - k + 1; yAxis <= col; yAxis++) {
-						foundAt += " " + "(" + row + "," + yAxis + ")";
+					// get values across x axis for where word is found
+					for (int xAxis = col - k + 1; xAxis <= col; xAxis++) {
+						foundAt += " " + "(" + row + "," + xAxis + ")";
 						k = 0;
 					}
 				}
