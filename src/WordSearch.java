@@ -106,4 +106,21 @@ public class WordSearch {
 		return puzzleGrid;
 	}
 
+	public boolean foundWordLeftToRight(String searchFor) {
+
+		char[][] puzzle = makePuzzleGrid("WordPuzzle.txt");
+
+		String rowStr = null;
+
+		for (int row = 0; row < puzzle.length; row++) {
+			rowStr = new String(puzzle[row]);
+			System.out.println(rowStr);
+			if (rowStr.contains(searchFor))
+				return true;
+		}
+
+		return false;
+
+	}
+
 }

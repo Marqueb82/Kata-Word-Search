@@ -51,8 +51,10 @@ public class wordSearchTest {
 	}
 
 	@Test
-	public void findWordInGrid() {
-		assertTrue(false);
+	public void foundWordInGrid() {
+		// check if word is in row
+		WordSearch wordSearch = new WordSearch();
+		assertTrue(wordSearch.foundWordLeftToRight("JOC"));
 	}
 
 }
