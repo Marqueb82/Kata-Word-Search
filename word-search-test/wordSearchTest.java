@@ -10,21 +10,21 @@ public class wordSearchTest {
 
 	@Test
 	public void doesTxtFileExist() {
-		// check if we have actual txt file to use
+		// test if we have actual txt file to use
 		WordSearch wordSearch = new WordSearch();
 		assertTrue(wordSearch.foundTxtFile());
 	}
 
 	@Test
 	public void canReadTxtFile() {
-		// check if we can read txt file
+		// test if we can read txt file
 		WordSearch wordSearch = new WordSearch();
 		assertTrue(wordSearch.readTxtFile());
 	}
 
 	@Test
 	public void extractPuzzleWords() {
-		// check if puzzle words were read and split from first line of txt file
+		// test if puzzle words can be read and split from first line of txt file
 		WordSearch wordSearch = new WordSearch();
 
 		List<String> tempList = new ArrayList<String>();
@@ -41,7 +41,7 @@ public class wordSearchTest {
 
 	@Test
 	public void checkGridCoords() {
-		// check if testValue will match letter at 2D array index
+		// test if testValues will match letter at 2D array index after reading grid
 		WordSearch wordSearch = new WordSearch();
 		char testValue = 'I';
 		char testValueTwo = 'B';
@@ -51,10 +51,12 @@ public class wordSearchTest {
 	}
 
 	@Test
-	public void foundWordInGrid() {
-		// check if word is in row
+	public void foundWordLeftToRight() {
+		// test if random piece of txt can be found from left to right on grid
 		WordSearch wordSearch = new WordSearch();
-		assertTrue(wordSearch.foundWordLeftToRight("JOC"));
+		String testString = "JOC:\t (0,10) (0,11) (0,12)";
+
+		assertEquals(testString, wordSearch.findWordLeftToRight("JOC"));
 	}
 
 }
