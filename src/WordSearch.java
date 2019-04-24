@@ -8,13 +8,15 @@ import java.util.List;
 public class WordSearch {
 
 	private List<String> puzzleWords;
+	private String file;
 
-	public WordSearch() {
+	public WordSearch(String file) {
+		this.file = file;
 	}
 
 	public boolean foundTxtFile() {
 
-		File wordSearch = new File("WordPuzzle.txt");
+		File wordSearch = new File(file);
 
 		// checks if txt file exist and is readible
 		if (wordSearch.exists()) {
@@ -29,7 +31,7 @@ public class WordSearch {
 
 	public boolean readTxtFile() {
 
-		File wordSearch = new File("WordPuzzle.txt");
+		File wordSearch = new File(file);
 
 		// checks if txt file exist and is readible
 		if (wordSearch.canRead()) {
@@ -42,7 +44,7 @@ public class WordSearch {
 		return false;
 	}
 
-	public List<String> getPuzzleWords(String file) {
+	public List<String> getPuzzleWords() {
 
 		puzzleWords = new ArrayList<String>();
 
@@ -65,7 +67,7 @@ public class WordSearch {
 		return puzzleWords;
 	}
 
-	public char[][] makePuzzleGrid(String file) {
+	public char[][] makePuzzleGrid() {
 
 		char[][] puzzleGrid = null;
 
@@ -106,10 +108,10 @@ public class WordSearch {
 		return puzzleGrid;
 	}
 
-	public String findWordLeftToRight(String searchFor) {
+	public String wordLeftToRight(String searchFor) {
 
 		// creating 2d array grid from txt file
-		char[][] puzzle = makePuzzleGrid("WordPuzzle.txt");
+		char[][] puzzle = makePuzzleGrid();
 		int k = 0;
 		String foundAt = "";
 
@@ -125,6 +127,37 @@ public class WordSearch {
 					foundAt = searchFor + ":" + "\t";
 					// get values across x axis for where word is found
 					for (int xAxis = col - k + 1; xAxis <= col; xAxis++) {
+						foundAt += " " + "(" + row + "," + xAxis + ")";
+						k = 0;
+					}
+				}
+			}
+		}
+
+		return foundAt;
+
+	}
+
+	public String wordRightToLeft(String searchFor) {
+
+		// creating 2d array grid from txt file
+		char[][] puzzle = makePuzzleGrid();
+		int k = 0;
+		String foundAt = "";
+
+		for (int row = 0; row < puzzle.length; row++) {
+			// search row column to column in reverse
+			for (int col = puzzle.length - 1; col >= 0; col--) {
+				if (searchFor.charAt(k) == puzzle[row][col]) {
+					k++;
+				} else {
+					k = 0;
+				}
+
+				if (k == searchFor.length()) {
+					foundAt = searchFor + ":" + "\t";
+					// get values across x in reverse
+					for (int xAxis = col + k - 1; xAxis >= col; xAxis--) {
 						foundAt += " " + "(" + row + "," + xAxis + ")";
 						k = 0;
 					}
