@@ -79,4 +79,12 @@ public class wordSearchTest {
 		assertEquals(testString, wordSearch.wordGoingDown("BONES"));
 	}
 
+	@Test
+	public void findWordGoingUp() {
+		WordSearch wordSearch = new WordSearch("WordPuzzle.txt");
+		String testString = "KHAN:\t (5,9) (5,8) (5,7) (5,6)";
+
+		assertEquals(testString, wordSearch.wordGoingUp("KHAN"));
+	}
+
 }

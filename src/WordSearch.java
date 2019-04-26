@@ -198,4 +198,33 @@ public class WordSearch {
 
 	}
 
+	public String wordGoingUp(String searchFor) {
+
+		char[][] puzzle = makePuzzleGrid();
+		int k = 0;
+		String foundAt = "";
+
+		for (int x = 0; x < puzzle.length; x++) {
+			for (int y = puzzle[x].length - 1; y >= 0; y--) {
+				// searching col x row
+				if (searchFor.charAt(k) == puzzle[y][x]) {
+					k++;
+				} else {
+					k = 0;
+				}
+
+				if (k == searchFor.length()) {
+					foundAt = searchFor + ":" + "\t";
+					// get values going up col
+					for (int row = y + k - 1; row >= y; row--) {
+						foundAt += " " + "(" + x + "," + row + ")";
+						k = 0;
+					}
+				}
+			}
+		}
+		return foundAt;
+
+	}
+
 }
