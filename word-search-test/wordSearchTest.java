@@ -70,4 +70,13 @@ public class wordSearchTest {
 		assertEquals(testString, wordSearch.wordRightToLeft("KIRK"));
 	}
 
+	@Test
+	public void findWordGoingDown() {
+		// test if one of the puzzle words can be found in reverse in a row
+		WordSearch wordSearch = new WordSearch("WordPuzzle.txt");
+		String testString = "BONES:\t (0,6) (0,7) (0,8) (0,9) (0,10)";
+
+		assertEquals(testString, wordSearch.wordGoingDown("BONES"));
+	}
+
 }

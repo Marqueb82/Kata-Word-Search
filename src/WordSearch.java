@@ -115,9 +115,10 @@ public class WordSearch {
 		int k = 0;
 		String foundAt = "";
 
-		for (int row = 0; row < puzzle.length; row++) {
-			for (int col = 0; col < puzzle.length; col++) {
-				if (searchFor.charAt(k) == puzzle[row][col]) {
+		// search through 2d grid
+		for (int x = 0; x < puzzle.length; x++) {
+			for (int y = 0; y < puzzle[x].length; y++) {
+				if (searchFor.charAt(k) == puzzle[x][y]) {
 					k++;
 				} else {
 					k = 0;
@@ -125,9 +126,9 @@ public class WordSearch {
 
 				if (k == searchFor.length()) {
 					foundAt = searchFor + ":" + "\t";
-					// get values across x axis for where word is found
-					for (int xAxis = col - k + 1; xAxis <= col; xAxis++) {
-						foundAt += " " + "(" + row + "," + xAxis + ")";
+					// get values going left to right down row
+					for (int col = y - k + 1; col <= y; col++) {
+						foundAt += " " + "(" + x + "," + col + ")";
 						k = 0;
 					}
 				}
@@ -140,15 +141,14 @@ public class WordSearch {
 
 	public String wordRightToLeft(String searchFor) {
 
-		// creating 2d array grid from txt file
 		char[][] puzzle = makePuzzleGrid();
 		int k = 0;
 		String foundAt = "";
 
-		for (int row = 0; row < puzzle.length; row++) {
+		for (int x = 0; x < puzzle.length; x++) {
 			// search row column to column in reverse
-			for (int col = puzzle.length - 1; col >= 0; col--) {
-				if (searchFor.charAt(k) == puzzle[row][col]) {
+			for (int y = puzzle[x].length - 1; y >= 0; y--) {
+				if (searchFor.charAt(k) == puzzle[x][y]) {
 					k++;
 				} else {
 					k = 0;
@@ -156,15 +156,44 @@ public class WordSearch {
 
 				if (k == searchFor.length()) {
 					foundAt = searchFor + ":" + "\t";
-					// get values across x in reverse
-					for (int xAxis = col + k - 1; xAxis >= col; xAxis--) {
-						foundAt += " " + "(" + row + "," + xAxis + ")";
+					// get values going up row in reverse
+					for (int col = y + k - 1; col >= y; col--) {
+						foundAt += " " + "(" + x + "," + col + ")";
 						k = 0;
 					}
 				}
 			}
 		}
 
+		return foundAt;
+
+	}
+
+	public String wordGoingDown(String searchFor) {
+
+		char[][] puzzle = makePuzzleGrid();
+		int k = 0;
+		String foundAt = "";
+
+		for (int x = 0; x < puzzle.length; x++) {
+			for (int y = 0; y < puzzle[x].length; y++) {
+				// searching col x row
+				if (searchFor.charAt(k) == puzzle[y][x]) {
+					k++;
+				} else {
+					k = 0;
+				}
+
+				if (k == searchFor.length()) {
+					foundAt = searchFor + ":" + "\t";
+					// get values going down col
+					for (int row = y - k + 1; row <= y; row++) {
+						foundAt += " " + "(" + x + "," + row + ")";
+						k = 0;
+					}
+				}
+			}
+		}
 		return foundAt;
 
 	}
